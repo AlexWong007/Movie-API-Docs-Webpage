@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie API Docs</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anta&display=swap" rel="stylesheet">
+    <style>
+        .anta-regular {
+            font-family: "Anta", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        #navbar-list li {
+            font-size: large;
+        }
+
+        #navbar-list li a {
+            color: #454545;
+        }
+
+        .box {
+            margin-top: 50px;
+            margin-bottom: 50px;
+            border-radius: 5px;
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+            background-color: #FFE6C7;
+            padding: 30px;
+        }
+
+        h2 {
+            color: #FF6000;
+            font-weight: bold;
+        }
+
+        request {
+            color:#FF6000;
+        }
+
+        .code-box {
+            background-color: #FFA559;
+            border-radius: 5px;
+            padding: 15px;
+            color: #454545;
+        }
+
+        p {
+            font-size: 13px;
+        }
+
+        h6 {
+            color: #454545;
+        }
+
+        pre {
+            text-align: left;
+        }
+
+        @media screen and (max-width: 1650px) {
+            #navbar-list {
+            display: none;
+            }
+        }
+    </style>
+</head>
+<body style="background-color: #454545;" class="anta-regular">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-1 px-0">
+                <ul id="navbar-list" class="nav flex-column" style="background-color: #FFE6C7; min-height: 100vh; position: fixed;">
+                    <li class="nav-item">
+                      <a class="nav-link" href="./index.html" style="color: #FF6000; font-size: larger; font-weight: bold;">MOVIE API</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#Get1">Get all movies</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#Get2">Get specific movie</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#Get3">Get Random movie</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#Post">Post movie</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#Put">Update specific movie</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#Patch">Alter specific movie</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#Delete1">Delete specific movie</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#Delete2">Delete ALL</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://github.com/AlexWong007"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"/>
+                        </svg></a>
+                    </li>
+                  </ul>
+            </div>
+            <div class="col-11 px-0">
+                <div class="container" style="flex-direction: column; justify-content: center; align-items: center;">
+                    <div class="box" id="Get1">
+                        <h2>GET /movies</h2>
+                        <h4 style="color: #454545;">Get all the movies held in the array of movies</h4>
+                        <br>
+                        <h6>Example Request:</h6>
+                        <div>
+                            
+                            <p class="code-box">
+                            <request>GET</request> http://localhost:4000/movies
+                            </p>
+                        </div>
+                        <br>
+                        <h6>Example Response:</h6>
+                        <div>
+<pre class="code-box">
+[
+    {
+        "id": 1,
+        "movieName": "Inception",
+        "description": "A mind-bending science fiction thriller directed by Christopher Nolan.",
+        "releaseDate": "2010-07-16"
+    },
+    {
+        "id": 2,
+        "movieName": "The Shawshank Redemption",
+        "description": "A classic drama film based on Stephen King's novella, directed by Frank Darabont.",
+        "releaseDate": "1994-09-23"
+    },
+    // and more movies (up to 50)
+]
+</pre>
+                        </div>
+                        <br>
+                        <h6>Example Guide:</h6>
+                        <div>
+<pre class="code-box">
+app.get("/movies", async (req, res) => {
+    try {
+        const response = await axios.get(`${url}/movies`);
+        const result = response.data;
+        console.log(result);
+        res.send(result);
+    } catch (error) {
+        res.status(404).send(error.message);
+    }
+});
+</pre>
+                        </div>
+                    </div>
+
+                    <div class="box" id="Get2">
+                        <h2>GET /movies/:id</h2>
+                        <h4 style="color: #454545;">Get a movie with the specific ID</h4>
+                        <br>
+                        <h6>Example Request:</h6>
+                        <div>
+                            
+                            <p class="code-box">
+                            <request>GET</request> http://localhost:4000/movies/1
+                            </p>
+                        </div>
+                        <br>
+                        <h6>Example Response:</h6>
+                        <div>
+<pre class="code-box">
+{
+    "id": 15,
+    "movieName": "Casablanca",
+    "description": "A romantic drama film directed by Michael Curtiz, set during World War II.",
+    "releaseDate": "1942-11-26"
+}
+</pre>
+                        </div>
+                        <br>
+                        <h6>Example Guide:</h6>
+                        <div>
+<pre class="code-box">
+app.get("/movies/:id", async (req, res) => {
+    const getMoviesId = req.params.id;
+    try {
+        const response = await axios.get(`${url}/movies/${getMoviesId}`);
+        const result = response.data;
+        console.log(result);
+        res.send(result);
+    } catch (error) {
+        res.status(404).send({ error: "Movie not found", message: error.message });
+    }
+});
+</pre>
+                        </div>
+                    </div>
+                    <div class="box" id="Get3">
+                        <h2>GET /random</h2>
+                        <h4 style="color: #454545;">Get a random movie</h4>
+                        <br>
+                        <h6>Example Request:</h6>
+                        <div>
+                            
+                            <p class="code-box">
+                            <request>GET</request> http://localhost:4000/random
+                            </p>
+                        </div>
+                        <br>
+                        <h6>Example Response:</h6>
+                        <div>
+<pre class="code-box">
+{
+    "id": 39,
+    "movieName": "Memento",
+    "description": "A psychological thriller film directed by Christopher Nolan.",
+    "releaseDate": "2000-09-05"
+}
+</pre>
+                        </div>
+                        <br>
+                        <h6>Example Guide:</h6>
+                        <div>
+<pre class="code-box">
+app.get("/random", async (req, res) => {
+    try {
+        const response = await axios.get(`${url}/random`);
+        console.log(response.data);
+        res.send(response.data);
+    } catch(error) {
+        res.status(404).send({ error: "random movie not found", message: error.message})
+    }
+});
+</pre>
+                        </div>
+                    </div>
+
+                    <div class="box" id="Post">
+                        <h2>POST /post</h2>
+                        <h4 style="color: #454545;">Post a movie to the end of the movies array</h4>
+                        <br>
+                        <h6>Example Request:</h6>
+                        <div>
+                            <p class="code-box">
+                            <request>POST</request> http://localhost:4000/post
+                            </p>
+                        </div>
+                        <br>
+                        <h6>Request body:</h6>
+                        <div>
+<pre class="code-box">
+{
+    "movie": "Insert movie name here",
+    "description": "Insert movie description here",
+    "date": "Insert release date of movie here"
+}
+</pre>
+                        </div>
+                        <br>
+                        <h6>Example Response:</h6>
+                        <div>
+<pre class="code-box">
+{
+    "id": 51,
+    "movieName": "test movie",
+    "description": "test description",
+    "releaseDate": "0000-00-00"
+}
+</pre>
+                        </div>
+                        <br>
+                        <h6>Example Guide:</h6>
+                        <div>
+<pre class="code-box">
+app.get("/post", async (req, res) => {
+    const obj = {
+        movie: "test Movie",
+        description: "test Description",
+        date: "0000-00-00"
+    }
+
+    try {
+        const response = await axios.post(`${url}/post`, obj);
+        console.log(response.data);
+        res.send(JSON.stringify(response.data) + " has been posted");
+    } catch (error) {
+        res.status(404).send({ error: "post has not been posted", message: error.message})
+    }
+});
+</pre>
+                        </div>
+                    </div>
+
+                    <div class="box" id="Put">
+                        <h2>PUT /updatePost/:id</h2>
+                        <h4 style="color: #454545;">Update a movie (you need to update every property)</h4>
+                        <br>
+                        <h6>Example Request:</h6>
+                        <div>
+                            
+                            <p class="code-box">
+                            <request>PUT</request> http://localhost:4000/updatePost/4
+                            </p>
+                        </div>
+                        <h6>Request body:</h6>
+                        <div>
+<pre class="code-box">
+{
+    "movie": "Insert updated movie name here",
+    "description": "Insert updated movie description here",
+    "date": "Insert updated release date of movie here"
+}
+</pre>
+                        <br>
+                        <h6>Example Response:</h6>
+                        <div>
+<pre class="code-box">
+{
+    "movieName": "Shutter Island",
+    "description": "A psychological thriller film directed by Martin Scorsese, known for its suspenseful plot and psychological twists.",
+    "releaseDate": "2010-02-19"
+}
+</pre>
+                        </div>
+                        <br>
+                        <h6>Example Guide:</h6>
+                        <div>
+<pre class="code-box">
+app.get("/updatePost/:id", async (req, res) => {
+    const getUpdatePostId = req.params.id;
+    const obj = {
+        movie: "testMovie2",
+        description: "testDescription2",
+        date: "2222-02-02"
+    }
+
+    try {
+        const response = await axios.put(`${url}/updatePost/${getUpdatePostId}`, obj);
+        console.log(response.data);
+        res.send(JSON.stringify(response.data) + " has been updated");
+    } catch (error) {
+        res.status(404).send({ error: "post has not been updated", message: error.message})
+    }
+});
+</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box" id="Patch">
+                    <h2>PUT /alterPost/:id</h2>
+                    <h4 style="color: #454545;">Alter a movie (you can either alter all of it, or some of it)</h4>
+                    <br>
+                    <h6>Example Request:</h6>
+                    <div>
+                        
+                        <p class="code-box">
+                        <request>PATCH</request> http://localhost:4000/alterPost/21
+                        </p>
+                    </div>
+                    <h6>Request body:</h6>
+                    <div>
+<pre class="code-box">
+{
+"movieName": "Shutter Island",
+"description": "A psychological thriller film directed by Martin Scorsese, known for its suspenseful plot and psychological twists.",
+}
+</pre>
+                    <br>
+                    <h6>Example Response:</h6>
+                    <div>
+<pre class="code-box">
+{
+"movieName": "Shutter Island",
+"releaseDate": "2010-02-19"
+}
+</pre>
+                    </div>
+                    <br>
+                    <h6>Example Guide:</h6>
+                    <div>
+<pre class="code-box">
+app.get("/alterPost/:id", async (req, res) => {
+    const getAlterPostId = req.params.id;
+    const obj = {
+        movie: "testMovie3",
+    }
+
+    try {
+        const response = await axios.patch(`${url}/alterPost/${getAlterPostId}`, obj);
+        console.log(response.data);
+        res.send(JSON.stringify(response.data) + " has been updated");
+    } catch (error) {
+        res.status(404).send({ error: "post has not been updated", message: error.message})
+    }
+});
+</pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="box" id="Delete1">
+                <h2>DELETE /deletePost/:id</h2>
+                <h4 style="color: #454545;">Delete a post with a specified ID</h4>
+                <br>
+                <h6>Example Request:</h6>
+                <div>
+                    
+                    <p class="code-box">
+                    <request>DELETE</request> http://localhost:4000/deletedPost/50
+                    </p>
+                </div>
+                <br>
+                <h6>Example Response:</h6>
+                <div>
+<pre class="code-box">
+{
+    "message": "Post deleted"
+}
+</pre>
+                </div>
+                <br>
+                <h6>Example Guide:</h6>
+                <div>
+<pre class="code-box">
+app.get("/deletePost/:id", async (req, res) => {
+    const deleteId = req.params.id;
+    try {
+        const response = await axios.delete(`${url}/deletePost/${deleteId}`);
+        console.log(response.data);
+        res.send(response.data);
+    } catch (error) {
+        res.status(404).send({ error: "post has not deleted", message: error.message})
+    }
+});
+</pre>
+                </div>
+            </div>
+
+            <div class="box" id="Delete2">
+                <h2>DELETE /deleteAll?key</h2>
+                <h4 style="color: #454545;">Delete every single movie that is held in array (this action can only be performed with the key 1VGP2DN-6EWM4SJ-D6FGRHV-Z3PR3TT)</h4>
+                <br>
+                <h6>Example Request:</h6>
+                <div>
+                    
+                    <p class="code-box">
+                    <request>DELETE</request> http://localhost:4000/deleteAll?key=1VGP2DN-6EWM4SJ-D6FGRHV-Z3PR3TT
+                    </p>
+                </div>
+                <br>
+                <h6>Example Response:</h6>
+                <div>
+<pre class="code-box">
+OK
+</pre>
+                </div>
+                <br>
+                <h6>Example Guide:</h6>
+                <div>
+<pre class="code-box">
+const masterKey = "1VGP2DN-6EWM4SJ-D6FGRHV-Z3PR3TT";
+
+app.get("/deleteAll", async (req, res) => {
+    try {
+        const response = await axios.delete(`${url}/deleteAll?key=${masterKey}`);
+        console.log(response.data);
+        res.send(response.data);
+    } catch (error) {
+        res.status(404).send({ error: "all posts have not been deleted", message: error.message})
+    }
+});
+</pre>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    <footer style="position: fixed; bottom:30px;">
+        <p><i>© 2024 Movie API by Alex Wong</i></p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
